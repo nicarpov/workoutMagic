@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div class="form">
+            <p class="h3">Вход</p>
+            <form action="" method="post" novalidate class="signin">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.username.label }} <br>
+                    {{ form.username(size=32) }} 
+                
+                </p>
+                <p>
+                    {{ form.password.label }}
+                    <br>
+                    {{ form.password(size=32) }}
+                </p>
+                
+                <p> {{ form.remember_me() }} {{ form.remember_me.label }} </p>
+                {{ form.submit() }}
+            </form>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/signin.css')}}">
+    <script src="{{ url_for('static', filename='js/signin.js')}}"></script>
+{% endblock %}

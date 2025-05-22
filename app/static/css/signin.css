@@ -1,0 +1,7 @@
+input {
+    max-width: 30vw;
+}
+
+.container {
+    justify-items: center;
+}
