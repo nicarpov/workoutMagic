@@ -3,4 +3,4 @@ import os
 load_dotenv()
 
 class Config:
-    SECRET_KEY = os.environ['SECRET_KEY'] or 'never-guess'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'never-guess'
