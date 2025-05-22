@@ -1,0 +1,13 @@
+<div class="exercise d-flex justify-content-between">
+    <div class="name">
+        <p> {{ exercise.name }}</p>
+    </div>
+    <div class="summary">
+        {% for muscle_group in exercise.muscle_groups %}
+            <span class="badge bg-info rounded-pill">{{ muscle_group }}</span>
+        {% endfor %}
+        {% for item in exercise.equipment %}
+            <span class="badge bg-secondary rounded-pill">{{ item }}</span>
+        {% endfor %}
+    </div>
+</div>

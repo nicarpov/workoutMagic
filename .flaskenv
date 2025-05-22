@@ -1,1 +1,2 @@
 FLASK_APP=workoutmagic.py
+FLASK_DEBUG=1
