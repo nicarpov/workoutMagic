@@ -19,7 +19,7 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        flash("{}".format(form.username.data))
-        flash("{}".format(form.username.data))
+        flash("{} заходит в качалку".format(form.username.data))
+        
         return redirect('/index')
     return render_template('login.html', title='Вход', form=form)
