@@ -174,3 +174,7 @@ cython_debug/
 .pypirc
 
 .python-version
+
+# Database
+
+*.db
