@@ -10,9 +10,9 @@ class User(db.Model):
     username: so.Mapped[str] = so.mapped_column(sa.String(32), unique=True, index=True)
     email: so.Mapped[str] = so.mapped_column(sa.String(120), unique=True, index=True)
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
-
+    workouts: so.WriteOnlyMapped['Workout'] = so.relationship(back_populates='user')
     def __repr__(self):
-        return "<User {}".format(self.username) 
+        return "<User {}>".format(self.username) 
 
 
 class Workout(db.Model):
@@ -22,10 +22,10 @@ class Workout(db.Model):
     started: so.Mapped[Optional[datetime]] = so.mapped_column()
     finished: so.Mapped[Optional[datetime]] = so.mapped_column()
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
-    guy: so.Mapped[User] = so.relationship(back_populates="workouts")
+    user: so.Mapped[User] = so.relationship(back_populates="workouts")
 
     def __repr__(self):
-        return "<Workout {}".format(self.id) 
+        return "<Workout {}>".format(self.id) 
     
 
 class Exercise(db.Model):
@@ -33,4 +33,4 @@ class Exercise(db.Model):
     name: so.Mapped[str] = so.mapped_column(sa.String(64), unique=False)
 
     def __repr__(self):
-        return "<Exercise {}".format(self.id) 
+        return "<Exercise {}>".format(self.id) 
