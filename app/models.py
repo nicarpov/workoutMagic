@@ -2,6 +2,8 @@ import sqlalchemy as sa
 import sqlalchemy.orm as so 
 from app import db
 from typing import Optional
+from datetime import datetime, timezone
+
 
 class User(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
@@ -11,3 +13,18 @@ class User(db.Model):
 
     def __repr__(self):
         return "<User {}".format(self.username) 
+
+
+class Workout(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    name: so.Mapped[str] = so.mapped_column(sa.String(64), unique=False)
+    created: so.Mapped[datetime] = so.mapped_column(default=datetime.now(timezone.utc))
+    started: so.Mapped[Optional[datetime]] = so.mapped_column()
+    finished: so.Mapped[Optional[datetime]] = so.mapped_column()
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
+    user: so.Mapped[User] = so.relationship(back_populates="workouts")
+    
+
+class Exercise(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    name: so.Mapped[str] = so.mapped_column(sa.String(64), unique=False)
