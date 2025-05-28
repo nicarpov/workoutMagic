@@ -22,9 +22,15 @@ class Workout(db.Model):
     started: so.Mapped[Optional[datetime]] = so.mapped_column()
     finished: so.Mapped[Optional[datetime]] = so.mapped_column()
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
-    user: so.Mapped[User] = so.relationship(back_populates="workouts")
+    guy: so.Mapped[User] = so.relationship(back_populates="workouts")
+
+    def __repr__(self):
+        return "<Workout {}".format(self.id) 
     
 
 class Exercise(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     name: so.Mapped[str] = so.mapped_column(sa.String(64), unique=False)
+
+    def __repr__(self):
+        return "<Exercise {}".format(self.id) 
