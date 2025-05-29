@@ -17,7 +17,7 @@ class User(db.Model):
 
 class Workout(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    name: so.Mapped[str] = so.mapped_column(sa.String(64), unique=False)
+    name: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64), unique=False)
     created: so.Mapped[datetime] = so.mapped_column(default=datetime.now(timezone.utc))
     started: so.Mapped[Optional[datetime]] = so.mapped_column()
     finished: so.Mapped[Optional[datetime]] = so.mapped_column()
