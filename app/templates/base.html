@@ -25,9 +25,20 @@
                     <li class="nav-item">
                          <a class="nav-link" href="#">Теория</a>   
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login')}}">Вход</a>
-                    </li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ current_user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout')}}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login')}}">Вход</a>
+                        </li>
+                        
+                    {% endif %}
+                    
                 </ul>
             </div>
         </nav>
@@ -36,7 +47,7 @@
         
             {% for message in messages %}
             <div class="d-flex alert alert-success alert-dismissable justify-content-between">
-                <div class="message">{{ message }} заходит в качалку</div>
+                <div class="message">{{ message }} </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
             {% endfor %}
         

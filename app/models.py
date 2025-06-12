@@ -3,10 +3,11 @@ import sqlalchemy.orm as so
 from app import db
 from typing import Optional
 from datetime import datetime, timezone
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     username: so.Mapped[str] = so.mapped_column(sa.String(32), unique=True, index=True)
     email: so.Mapped[str] = so.mapped_column(sa.String(120), unique=True, index=True)
